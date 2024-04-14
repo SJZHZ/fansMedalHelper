@@ -100,16 +100,15 @@ async def main():
     if users.get("MOREPUSH", ""):
         from onepush import notify
 
-        notifier = users["MOREPUSH"]["notifier"]
-        params = users["MOREPUSH"]["params"]
-        await notify(
-            notifier,
-            title=f"【B站粉丝牌助手推送】",
-            content="  \n".join(messageList),
-            **params,
-            proxy=config.get("PROXY"),
-        )
-        log.info(f"{notifier} 已推送")
+        for notifier, params in users["MOREPUSH"].items():
+            await notify(
+                notifier,
+                title=f"【B站粉丝牌助手推送】",
+                content="  \n".join(messageList),
+                **params,
+                proxy=config.get("PROXY"),
+            )
+            log.info(f"{notifier} 已推送")
 
 
 def run(*args, **kwargs):
