@@ -100,7 +100,9 @@ async def main():
     if users.get("MOREPUSH", ""):
         from onepush import notify
 
-        for notifier, params in users["MOREPUSH"].items():
+        for _, notifier_info in users["MOREPUSH"].items():
+            notifier = notifier_info["notifier"]
+            params = notifier_info["params"]
             await notify(
                 notifier,
                 title=f"【B站粉丝牌助手推送】",
