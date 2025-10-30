@@ -12,3 +12,6 @@ users.yaml
 venv/
 .idea/
 *.swp
+
+log/
+Bilibili_venv/
